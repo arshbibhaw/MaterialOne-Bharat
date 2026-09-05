@@ -1,0 +1,1 @@
+# FastAPI routes for generate_cnmc
