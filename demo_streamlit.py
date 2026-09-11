@@ -4,14 +4,14 @@ from ml.api.main import load_models, get_recommendation
 from ml.api.schemas import MatchRequest, MaterialRecord
 
 # Initialize backend AI models purely in memory! No FastAPI needed for cloud deployment.
-@st.cache_resource(show_spinner="Loading MatrixCode AI Models into Memory...")
+@st.cache_resource(show_spinner="Loading MatOne AI Models into Memory...")
 def init_system():
     load_models()
     return True
 
 init_system()
 
-st.set_page_config(page_title="MatrixCode AI", layout="wide", page_icon="⚡")
+st.set_page_config(page_title="MatOne AI", layout="wide", page_icon="⚡")
 
 # Custom CSS for glassmorphism, nice typography, and vibrant accents
 st.markdown("""
@@ -62,7 +62,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-st.title("⚡ MatrixCode AI Harmonization")
+st.title("⚡ MatOne AI Harmonization")
 st.markdown("Automated, AI-driven material master deduplication and harmonization.")
 
 st.markdown('<div class="metric-card">', unsafe_allow_html=True)
@@ -85,7 +85,7 @@ with st.form("input_form"):
 st.markdown('</div>', unsafe_allow_html=True)
 
 if submit:
-    with st.spinner("Processing through MatrixCode Engine..."):
+    with st.spinner("Processing through MatOne Engine..."):
         payload = {
             "source_record": {
                 "cpse_id": cpse_id,

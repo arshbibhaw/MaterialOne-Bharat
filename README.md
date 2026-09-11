@@ -1,4 +1,4 @@
-# MatrixCode
+# MatOne
 
 Material-code identity resolution and governance workflow.
 
@@ -14,7 +14,7 @@ For the frontend, copy `frontend/.env.example` to `frontend/.env.local`, install
 
 ## Configuration
 
-- `MATRIXCODE_FRONTEND_ORIGIN` sets the backend CORS origin.
+- `MATONE_FRONTEND_ORIGIN` sets the backend CORS origin.
 - `NEXT_PUBLIC_API_BASE_URL` sets the frontend API origin.
 
 The recommendation endpoint requires local model artifacts and the configured training CSV.

@@ -16,7 +16,7 @@ from ml.evaluation.metrics import calculate_classification_metrics
 
 def main():
     print("=" * 60)
-    print("MatrixCode — Train & Evaluate Pipeline")
+    print("MatOne — Train & Evaluate Pipeline")
     print("=" * 60)
     
     print("\n[1/6] Loading data...")

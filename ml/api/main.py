@@ -26,7 +26,7 @@ hybrid_model = None
 classifier = None
 candidate_records: Dict[str, MaterialRecord] = {}
 
-app = FastAPI(title="MatrixCode API", version="1.0.0", description="Material Identity Resolution Engine")
+app = FastAPI(title="MatOne API", version="1.0.0", description="Material Identity Resolution Engine")
 
 # Setup CORS for Next.js frontend
 app.add_middleware(

@@ -3,7 +3,7 @@ import json
 from typing import Dict, Any, List
 from ml.config import DATA_ROOT
 
-DB_PATH = DATA_ROOT / "matrixcode.db"
+DB_PATH = DATA_ROOT / "matone.db"
 
 def get_connection():
     DB_PATH.parent.mkdir(parents=True, exist_ok=True)

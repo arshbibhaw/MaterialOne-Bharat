@@ -38,4 +38,4 @@ SIMILARITY_THRESHOLD = 0.65
 
 # Runtime configuration.  These defaults keep local development simple while
 # allowing deployments to move the frontend without editing source code.
-FRONTEND_ORIGIN = os.getenv("MATRIXCODE_FRONTEND_ORIGIN", "http://localhost:3000")
+FRONTEND_ORIGIN = os.getenv("MATONE_FRONTEND_ORIGIN", "http://localhost:3000")

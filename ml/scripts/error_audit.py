@@ -18,7 +18,7 @@ from ml.matching.rules import check_engineering_conflicts
 
 def main():
     print("=" * 60)
-    print("MatrixCode -- Error Audit")
+    print("MatOne -- Error Audit")
     print("=" * 60)
 
     print("\n[1/4] Loading data and model...")
@@ -109,7 +109,7 @@ def main():
     print("\n[4/4] Generating error report...")
     
     report = []
-    report.append("# MatrixCode Error Audit Report\n")
+    report.append("# MatOne Error Audit Report\n")
     report.append(f"## Summary")
     report.append(f"- False Merges (CRITICAL): {len(false_merges)}")
     report.append(f"- False Splits: {len(false_splits)}")

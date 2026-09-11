@@ -1,4 +1,4 @@
-# MatrixCode - AI-Driven Material Code Harmonization Engine
+# MatOne - AI-Driven Material Code Harmonization Engine
 # SIH26099 - Smart India Hackathon 2026
 
 # Core data science
