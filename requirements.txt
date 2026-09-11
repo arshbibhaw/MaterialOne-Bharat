@@ -1,0 +1,43 @@
+# MatrixCode - AI-Driven Material Code Harmonization Engine
+# SIH26099 - Smart India Hackathon 2026
+
+# Core data science
+pandas>=2.2.0
+numpy>=1.26.0
+scikit-learn>=1.5.0
+
+# NLP & Embeddings
+sentence-transformers>=3.0.0
+torch>=2.2.0
+
+# Vector search
+faiss-cpu>=1.8.0
+
+# Gradient boosting
+xgboost>=2.1.0
+
+# Text similarity
+rapidfuzz>=3.9.0
+
+# Unit conversion
+pint>=0.24
+
+# Regex
+regex>=2024.0.0
+
+# API
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+pydantic>=2.8.0
+
+# Config
+pyyaml>=6.0.0
+
+# Progress bars
+tqdm>=4.66.0
+
+# Testing
+pytest>=8.0.0
+
+# UI
+streamlit>=1.38.0

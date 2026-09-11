@@ -1,0 +1,115 @@
+# Critical engineering conflict rules
+# Version: 2.0
+# Each family maps to a list of critical attribute comparisons.
+# If both values are present and differ, it is a CRITICAL_CONFLICT.
+
+PIPE:
+  - condition: "schedule_a != schedule_b"
+    result: CRITICAL_CONFLICT
+    rule_id: PIPE-SCH-001
+  - condition: "grade_a != grade_b"
+    result: CRITICAL_CONFLICT
+    rule_id: PIPE-GRD-001
+  - condition: "nominal_diameter_a != nominal_diameter_b"
+    result: CRITICAL_CONFLICT
+    rule_id: PIPE-DIA-001
+    tolerance: 0.5
+  - condition: "material_a != material_b"
+    result: CRITICAL_CONFLICT
+    rule_id: PIPE-MAT-001
+  - condition: "standard_a != standard_b"
+    result: CRITICAL_CONFLICT
+    rule_id: PIPE-STD-001
+
+BOLT:
+  - condition: "diameter_a != diameter_b"
+    result: CRITICAL_CONFLICT
+    rule_id: BOLT-DIA-001
+    tolerance: 0.1
+  - condition: "length_a != length_b"
+    result: CRITICAL_CONFLICT
+    rule_id: BOLT-LEN-001
+    tolerance: 0.5
+  - condition: "grade_a != grade_b"
+    result: CRITICAL_CONFLICT
+    rule_id: BOLT-GRD-001
+  - condition: "material_a != material_b"
+    result: CRITICAL_CONFLICT
+    rule_id: BOLT-MAT-001
+  - condition: "thread_a != thread_b"
+    result: CRITICAL_CONFLICT
+    rule_id: BOLT-THD-001
+
+CABLE:
+  - condition: "voltage_a != voltage_b"
+    result: CRITICAL_CONFLICT
+    rule_id: CABLE-VLT-001
+    tolerance: 10
+  - condition: "cores_a != cores_b"
+    result: CRITICAL_CONFLICT
+    rule_id: CABLE-COR-001
+  - condition: "cross_section_a != cross_section_b"
+    result: CRITICAL_CONFLICT
+    rule_id: CABLE-XSC-001
+    tolerance: 0.1
+  - condition: "conductor_material_a != conductor_material_b"
+    result: CRITICAL_CONFLICT
+    rule_id: CABLE-MAT-001
+
+TRANSFORMER:
+  - condition: "primary_voltage_a != primary_voltage_b"
+    result: CRITICAL_CONFLICT
+    rule_id: XFMR-PV-001
+  - condition: "secondary_voltage_a != secondary_voltage_b"
+    result: CRITICAL_CONFLICT
+    rule_id: XFMR-SV-001
+  - condition: "capacity_a != capacity_b"
+    result: CRITICAL_CONFLICT
+    rule_id: XFMR-CAP-001
+    tolerance: 0.5
+  - condition: "phase_a != phase_b"
+    result: CRITICAL_CONFLICT
+    rule_id: XFMR-PH-001
+
+VALVE:
+  - condition: "pressure_class_a != pressure_class_b"
+    result: CRITICAL_CONFLICT
+    rule_id: VALVE-PC-001
+  - condition: "size_a != size_b"
+    result: CRITICAL_CONFLICT
+    rule_id: VALVE-SZ-001
+    tolerance: 0.5
+  - condition: "body_material_a != body_material_b"
+    result: CRITICAL_CONFLICT
+    rule_id: VALVE-MAT-001
+  - condition: "standard_a != standard_b"
+    result: CRITICAL_CONFLICT
+    rule_id: VALVE-STD-001
+
+BEARING:
+  - condition: "bearing_number_a != bearing_number_b"
+    result: CRITICAL_CONFLICT
+    rule_id: BRG-NUM-001
+  - condition: "inner_diameter_a != inner_diameter_b"
+    result: CRITICAL_CONFLICT
+    rule_id: BRG-ID-001
+    tolerance: 0.1
+  - condition: "outer_diameter_a != outer_diameter_b"
+    result: CRITICAL_CONFLICT
+    rule_id: BRG-OD-001
+    tolerance: 0.1
+
+FLANGE:
+  - condition: "flange_type_a != flange_type_b"
+    result: CRITICAL_CONFLICT
+    rule_id: FLANGE-TYP-001
+  - condition: "nominal_size_a != nominal_size_b"
+    result: CRITICAL_CONFLICT
+    rule_id: FLANGE-SZ-001
+    tolerance: 0.5
+  - condition: "pressure_class_a != pressure_class_b"
+    result: CRITICAL_CONFLICT
+    rule_id: FLANGE-PC-001
+  - condition: "material_grade_a != material_grade_b"
+    result: CRITICAL_CONFLICT
+    rule_id: FLANGE-GRD-001

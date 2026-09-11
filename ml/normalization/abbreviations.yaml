@@ -1,0 +1,55 @@
+# Abbreviations for Material descriptions
+
+FASTENER:
+  zn: "zinc"
+  zp: "zinc plated"
+  ss: "stainless steel"
+  hex: "hexagonal"
+  hd: "head"
+  dia: "diameter"
+  lg: "length"
+  thk: "thickness"
+  od: "outer diameter"
+  id: "inner diameter"
+
+PIPING:
+  sch: "schedule"
+  nb: "nominal bore"
+  dn: "diameter nominal"
+  cs: "carbon steel"
+  ss: "stainless steel"
+  flg: "flange"
+  w/n: "weld neck"
+  s/o: "slip on"
+  thd: "threaded"
+
+ELECTRICAL:
+  sqmm: "square millimeter"
+  kv: "kilovolt"
+  cu: "copper"
+  al: "aluminum"
+  xlpe: "cross-linked polyethylene"
+  pvc: "polyvinyl chloride"
+  swg: "switchgear"
+  cb: "circuit breaker"
+  mcb: "miniature circuit breaker"
+
+VALVE:
+  vlv: "valve"
+  glb: "globe"
+  gt: "gate"
+  chk: "check"
+  bll: "ball"
+  cl: "class"
+
+GENERAL:
+  mfg: "manufacturer"
+  std: "standard"
+  spec: "specification"
+  qty: "quantity"
+  ea: "each"
+  nos: "numbers"
+  pkg: "package"
+  assy: "assembly"
+  eq: "equivalent"
+  approx: "approximate"

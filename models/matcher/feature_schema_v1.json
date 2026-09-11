@@ -1,0 +1,13 @@
+{
+  "features": [
+    "embedding_cosine_similarity",
+    "normalized_description_similarity",
+    "long_text_similarity",
+    "overall_attribute_agreement",
+    "attribute_conflict_count",
+    "missing_attribute_count",
+    "same_family",
+    "manufacturer_similarity"
+  ],
+  "version": "1.0"
+}

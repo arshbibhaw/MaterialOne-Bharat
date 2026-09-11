@@ -1,0 +1,95 @@
+# Hierarchical material taxonomy
+
+FLOW_CONTROL:
+  VALVE:
+    - Globe
+    - Gate
+    - Ball
+    - Butterfly
+    - Check
+    - Plug
+    - Relief
+    - Control
+
+PIPING:
+  PIPE:
+    - Seamless
+    - Welded
+    - ERW
+    - LSAW
+  FLANGE:
+    - Weld Neck
+    - Slip On
+    - Blind
+    - Threaded
+    - Socket Weld
+    - Lap Joint
+  FITTING:
+    - Elbow
+    - Tee
+    - Reducer
+    - Cap
+    - Coupling
+    - Nipple
+
+FASTENER:
+  BOLT:
+    - Hex
+    - Stud
+    - U-Bolt
+    - Anchor
+    - Eye
+  NUT:
+    - Hex
+    - Lock
+    - Wing
+    - Cap
+  WASHER:
+    - Flat
+    - Spring
+    - Lock
+
+ELECTRICAL:
+  CABLE:
+    - Power
+    - Control
+    - Instrumentation
+    - Communication
+  MOTOR:
+    - Induction
+    - Synchronous
+    - DC
+    - Stepper
+  SWITCHGEAR:
+    - Relay
+    - Contactor
+    - Breaker
+    - Switch
+    - Panel
+
+MECHANICAL:
+  BEARING:
+    - Ball
+    - Roller
+    - Thrust
+    - Sleeve
+  PUMP:
+    - Centrifugal
+    - Positive Displacement
+    - Diaphragm
+    - Gear
+  SEAL:
+    - Mechanical
+    - O-Ring
+    - Gasket
+
+INSTRUMENTATION:
+  TRANSMITTER:
+    - Pressure
+    - Temperature
+    - Flow
+    - Level
+  GAUGE:
+    - Pressure
+    - Temperature
+    - Level

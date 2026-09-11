@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+ml/data/*.db
+models/faiss_index/
+exports/
+frontend/.next/
+frontend/node_modules/
+frontend/.env.local
