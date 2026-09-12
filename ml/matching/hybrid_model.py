@@ -56,9 +56,13 @@ class HybridMatcher:
         if is_match:
             cosine = features_dict.get("embedding_cosine_similarity", 0.0)
             attr_agree = features_dict.get("overall_attribute_agreement", 0.0)
+            raw_exact = features_dict.get("raw_exact_similarity", 0.0)
             
             if cosine > 0.92 and attr_agree > 0.8:
-                classification = "IDENTICAL"
+                if raw_exact > 0.95:
+                    classification = "IDENTICAL"
+                else:
+                    classification = "NEAR_DUPLICATE"
             elif cosine > 0.80 and attr_agree > 0.5:
                 classification = "NEAR_DUPLICATE"
             else:

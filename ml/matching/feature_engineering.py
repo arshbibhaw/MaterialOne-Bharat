@@ -34,6 +34,12 @@ def calculate_similarity_features(profile_a: Dict[str, Any], profile_b: Dict[str
     else:
         features['long_text_similarity'] = 0.0
         
+    # 2b. Raw text similarity (Representation features)
+    raw_a = str(profile_a.get("raw_description", "") or "").upper().strip()
+    raw_b = str(profile_b.get("raw_description", "") or "").upper().strip()
+    features['raw_exact_similarity'] = fuzz.ratio(raw_a, raw_b) / 100.0
+    features['raw_token_sort_similarity'] = fuzz.token_sort_ratio(raw_a, raw_b) / 100.0
+        
     # 3. Attribute Agreement
     attrs_a = profile_a.get("attributes", {})
     attrs_b = profile_b.get("attributes", {})

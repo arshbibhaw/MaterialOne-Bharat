@@ -41,8 +41,12 @@ class FinalRelationshipClassifier:
             reason = "Missing critical attributes prevent safe comparison."
         # 5. Refine into classes based on ML probability
         else:
+            raw_exact = features.get("raw_exact_similarity", 0.0)
             if prob > 0.85 and features.get("overall_attribute_agreement", 0) > 0.8:
-                final_class = "IDENTICAL"
+                if raw_exact > 0.95:
+                    final_class = "IDENTICAL"
+                else:
+                    final_class = "NEAR_DUPLICATE"
             elif prob > 0.70:
                 final_class = "NEAR_DUPLICATE"
             elif prob > 0.50 and features.get("same_family", 0) == 1:
