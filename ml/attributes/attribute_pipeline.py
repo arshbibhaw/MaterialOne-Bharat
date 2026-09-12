@@ -6,6 +6,40 @@ from ml.taxonomy.schemas import get_schema_for_family
 from ml.attributes.regex_extractors import extract_attributes_by_family
 from ml.attributes.dictionary_extractors import extract_dictionary_attributes
 
+# Generalized material canonicalization map.
+# Maps every known alias/abbreviation/expansion to ONE canonical form.
+# This prevents false engineering conflicts when the same material is
+# described differently across CPSEs (e.g. "DI" vs "DUCTILE IRON").
+MATERIAL_CANONICAL_MAP = {
+    # Ductile Iron
+    "DI": "DUCTILE_IRON", "DUCTILEIRON": "DUCTILE_IRON", "DUCTILE IRON": "DUCTILE_IRON",
+    # Cast Iron
+    "CI": "CAST_IRON", "CASTIRON": "CAST_IRON", "CAST IRON": "CAST_IRON",
+    # Carbon Steel
+    "CS": "CARBON_STEEL", "CARBONSTEEL": "CARBON_STEEL", "CARBON STEEL": "CARBON_STEEL",
+    # Mild Steel
+    "MS": "MILD_STEEL", "MILDSTEEL": "MILD_STEEL", "MILD STEEL": "MILD_STEEL",
+    # Stainless Steel variants
+    "SS": "STAINLESS_STEEL", "STAINLESSSTEEL": "STAINLESS_STEEL", "STAINLESS STEEL": "STAINLESS_STEEL",
+    "SS304": "SS304", "SS316": "SS316", "SS316L": "SS316L",
+    # Galvanized Iron
+    "GI": "GALVANIZED_IRON", "GALVANIZEDIRON": "GALVANIZED_IRON",
+    # ASTM castings
+    "WCB": "WCB", "WC6": "WC6", "WC9": "WC9", "WC1": "WC1",
+    "LCC": "LCC", "LCB": "LCB", "LC1": "LC1", "LC2": "LC2", "LC3": "LC3",
+    "CF8": "CF8", "CF8M": "CF8M", "CF3": "CF3", "CF3M": "CF3M",
+    # Common alloys
+    "MONEL": "MONEL", "INCONEL": "INCONEL", "HASTELLOY": "HASTELLOY",
+    "DUPLEX": "DUPLEX", "SUPERDUPLEX": "SUPER_DUPLEX", "SUPER DUPLEX": "SUPER_DUPLEX",
+    "BRONZE": "BRONZE", "BRASS": "BRASS", "GUNMETAL": "GUNMETAL",
+    "COPPER": "COPPER", "CU": "COPPER",
+    "ALUMINUM": "ALUMINUM", "AL": "ALUMINUM",
+    "STEEL": "STEEL",
+}
+
+# Attributes that hold material designations and should be canonicalized
+MATERIAL_ATTR_NAMES = {"body_material", "material", "construction_material", "conductor_material", "material_grade"}
+
 # Load taxonomy to map groups to families
 TAXONOMY_PATH = Path(__file__).parent.parent / "taxonomy" / "taxonomy.yaml"
 with open(TAXONOMY_PATH, "r") as f:
@@ -89,7 +123,15 @@ def run_attribute_pipeline(text: str, material_group_code: str = None, long_text
         if k not in result["attributes"]:
             result["attributes"][k] = v
             
-    # 5. Check completeness
+    # 5. Canonicalize material attributes so that aliases resolve to one form
+    for attr_name in MATERIAL_ATTR_NAMES:
+        if attr_name in result["attributes"]:
+            raw_norm = str(result["attributes"][attr_name].get("normalized", "")).upper().strip()
+            canonical = MATERIAL_CANONICAL_MAP.get(raw_norm)
+            if canonical:
+                result["attributes"][attr_name]["normalized"] = canonical
+            
+    # 6. Check completeness
     for attr_def in schema:
         if attr_def.is_critical and attr_def.name not in result["attributes"]:
             result["missing_critical"].append(attr_def.name)
