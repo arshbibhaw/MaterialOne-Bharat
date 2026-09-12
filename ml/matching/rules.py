@@ -74,7 +74,8 @@ def compare_attributes(profile_a: Dict[str, Any], profile_b: Dict[str, Any]) -> 
         val_a = attrs_a.get(k, {}).get("normalized")
         val_b = attrs_b.get(k, {}).get("normalized")
         
-        is_critical = (k in critical_keys) or (k in rule_map)
+        is_schema_critical = (k in critical_keys)
+        has_rule = (k in rule_map)
         
         if val_a is not None and val_b is not None:
             rule = rule_map.get(k)
@@ -98,19 +99,22 @@ def compare_attributes(profile_a: Dict[str, Any], profile_b: Dict[str, Any]) -> 
             state = "UNKNOWN"
             reason = None
 
+        # A conflict is only critical if it violates a rule AND the attribute is critical
+        is_critical_conflict = (state == "CONFLICT") and (has_rule or is_schema_critical)
+
         state_obj = {
             "attribute": k,
             "source": val_a,
             "candidate": val_b,
             "state": state,
-            "critical": is_critical if state == "CONFLICT" else False
+            "critical": is_critical_conflict
         }
         
         if reason:
             state_obj["reason"] = reason
             state_obj["rule_version"] = RULES_VERSION
             
-        if state == "CONFLICT" and is_critical:
+        if is_critical_conflict:
             state_obj["rule_id"] = rule_map.get(k, {}).get("rule_id", "SCHEMA-CRITICAL")
             critical_conflicts.append(state_obj)
             
