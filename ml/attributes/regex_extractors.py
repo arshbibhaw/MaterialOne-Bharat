@@ -122,10 +122,24 @@ def extract_valve_attributes(text: str) -> Dict[str, Any]:
     if std_match:
         attrs['standard'] = {"raw": std_match.group(0), "normalized": f"{std_match.group(1).upper()} {std_match.group(2).upper()}"}
         
-    # Body Material
-    mat_match = re.search(r'\b(ss\s*\d*|stainless\s*steel|steel|brass|copper|ms|mild\s*steel|carbon\s*steel|cs|cast\s*iron|ci|alloy\s*20)\b', text, re.IGNORECASE)
+    # Body Material — covers common ASTM casting/forging designations, alloy
+    # abbreviations, and standard industry terminology used across CPSEs.
+    mat_match = re.search(
+        r'\b('
+        r'ss\s*\d*[a-z]*|stainless\s*steel|steel|brass|copper|'
+        r'ms|mild\s*steel|carbon\s*steel|cs|'
+        r'cast\s*iron|ci|ductile\s*iron|di|'
+        r'alloy\s*\d*|'
+        r'wcb|wc[1-9]|wc\d{1,2}|lcc|lcb|lc[1-3]|'
+        r'cf8m?|cf3m?|'
+        r'a\d{2,4}|'
+        r'monel|inconel|hastelloy|duplex|super\s*duplex|'
+        r'bronze|gunmetal'
+        r')\b', text, re.IGNORECASE)
     if mat_match:
-        attrs['body_material'] = {"raw": mat_match.group(0), "normalized": mat_match.group(1).upper().replace(" ", "")}
+        raw = mat_match.group(0)
+        normalized = mat_match.group(1).upper().replace(" ", "")
+        attrs['body_material'] = {"raw": raw, "normalized": normalized}
         
     return attrs
 
@@ -146,9 +160,13 @@ def extract_pump_attributes(text: str) -> Dict[str, Any]:
         attrs['pump_type'] = {"raw": type_match.group(0), "normalized": type_match.group(1).upper()}
         
     # Material
-    mat_match = re.search(r'\b(cast\s*iron|ci|ss|stainless\s*steel|bronze|carbon\s*steel|cs|alloy\s*20)\b', text, re.IGNORECASE)
+    mat_match = re.search(
+        r'\b(cast\s*iron|ci|ductile\s*iron|di|'
+        r'ss\s*\d*[a-z]*|stainless\s*steel|bronze|carbon\s*steel|cs|'
+        r'alloy\s*\d*|wcb|wc[1-9]|lcc|lcb|cf8m?|cf3m?|'
+        r'monel|inconel|hastelloy|duplex|gunmetal)\b', text, re.IGNORECASE)
     if mat_match:
-        attrs['construction_material'] = {"raw": mat_match.group(0), "normalized": mat_match.group(1).upper()}
+        attrs['construction_material'] = {"raw": mat_match.group(0), "normalized": mat_match.group(1).upper().replace(" ", "")}
         
     # Size
     size_match = re.search(r'(\d+(?:\.\d+)?)\s*(mm|in|inch|"|nb)', text, re.IGNORECASE)
